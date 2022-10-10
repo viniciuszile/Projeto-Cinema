@@ -1,0 +1,130 @@
+*{
+    margin: 0px;
+}
+
+
+.header{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(50, 50, 200) ;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.row-1, .row-2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: flex;
+}
+
+.texto{
+    text-decoration: none;
+    color: blue;
+  
+}
+
+.text_botao{
+    font-size: medium   ;
+    color: rgb(50, 50, 200) ;
+}
+
+.botao{
+    width: 200px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    border: rgb(50, 50, 200) solid 1px;
+    border-radius: 5px;
+  
+}
+
+.text_botao:hover{
+    font-size: medium   ;
+    color: rgb(255, 255, 255);
+}
+
+.botao:hover{
+    width: 200px;
+    height: 30px;
+    background-color: rgb(50, 50, 200);
+    border: rgb(255, 255, 255) solid 1px;
+    border-radius: 5px;
+}
+
+.salas{  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    margin: 20px;
+    background-color:white;
+    border: rgb(50, 50, 200) solid 1px;
+}
+
+.salas_grande{  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 350px;
+    height: 200px;
+    margin: 20px;
+    background-color:white;
+    border: rgb(50, 50, 200) solid 1px;
+}
+
+.salas_menor{  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    background-color:white;
+    border: rgb(50, 50, 200) solid 1px;
+}
+.texto_menor{
+    text-decoration: none;
+    color: blue;
+  
+}
+
+.text_botao_menor{
+    font-size: medium   ;
+    color: rgb(50, 50, 200) ;
+}
+
+.botao_menor{
+    width: 150px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    border: rgb(50, 50, 200) solid 1px;
+    border-radius: 5px;
+  
+}
+
+.text_botao_menor:hover{
+    font-size: medium   ;
+    color: rgb(255, 255, 255);
+}
+
+.botao_menor:hover{
+    width: 150px;
+    height: 30px;
+    background-color: rgb(50, 50, 200);
+    border: rgb(255, 255, 255) solid 1px;
+    border-radius: 5px;
+}
