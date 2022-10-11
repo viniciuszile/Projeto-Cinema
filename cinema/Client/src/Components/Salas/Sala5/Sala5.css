@@ -2,14 +2,14 @@
     margin: 0;
 }
 
-.container-sala1{   
+.container-sala3{   
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-.header-sala1{
+.header-sala3{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.infos-sala1{
+.infos-sala3{
     width: 500px;
     height: 350px;
     margin-top: 200px;
@@ -32,7 +32,7 @@
 }
 
 
-.texto_nome-sala1{
+.texto_nome-sala3{
     font-size: 35px;
     color: rgb(50, 50, 200);
 }
@@ -43,7 +43,7 @@
     color: rgb(0, 0, 0);
 }
 
-.botao-sala1{
+.botao-sala3{
     margin-top: 30px;
     width: 125px;
     height: 30px;
@@ -54,7 +54,7 @@
     border-radius: 5px;
 }
 
-.botao-sala1:hover{
+.botao-sala3:hover{
     margin-top: 30px;
     width: 125px;
     height: 30px;
