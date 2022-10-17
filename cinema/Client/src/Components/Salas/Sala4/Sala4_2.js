@@ -2,7 +2,7 @@ import "../../Estilo_Global/style.css"
 import React,{ useState,useEffect } from 'react';
 import axios from "axios";
 
-export default function Sala6(){
+export default function Sala4_2(){
 
     const [sala, SetSala] = useState([])
     const [capacidade, SetCapacidade] = useState()
@@ -24,10 +24,10 @@ export default function Sala6(){
         axios.get("http://localhost:3006/")
         .then((response) => response.data)
         .then((response) =>{
-            console.log(response[7])
-            SetSala(response[7]["NUMERO_SALA"])
-            SetCapacidade(response[7]["CAPACIDADE"])
-            SetHorario(response[7]["HORARIO"])
+            console.log(response[5])
+            SetSala(response[5]["NUMERO_SALA"])
+            SetCapacidade(response[5]["CAPACIDADE"])
+            SetHorario(response[5]["HORARIO"])
 
         })
     },[])
@@ -36,9 +36,9 @@ export default function Sala6(){
         axios.get("http://localhost:3006/Filmes")
         .then((response) => response.data)
         .then((response) =>{
-            console.log(response[7])
-            SetProgramacao(response[7]["FILME"])
-            SetDuracao(response[7]["DURACAO"])
+            console.log(response[5])
+            SetProgramacao(response[5]["FILME"])
+            SetDuracao(response[5]["DURACAO"])
             
         })
     },[])
@@ -47,10 +47,10 @@ export default function Sala6(){
         axios.get("http://localhost:3006/Ingresso")
         .then((response) => response.data)
         .then((response) =>{
-            console.log(response[7])
-            SetIngressodips(response[7]["INGRESSOSDISP"])
-            SetIngressosvend(response[7]["INGRESSOSVEND"])
-            SetValor(response[7]["VALOR"])            
+            console.log(response[5])
+            SetIngressodips(response[5]["INGRESSOSDISP"])
+            SetIngressosvend(response[5]["INGRESSOSVEND"])
+            SetValor(response[5]["VALOR"])            
         })
     },[])
 
@@ -62,7 +62,7 @@ export default function Sala6(){
         SetIngressosvend(ingressosvend + 1)
         SetFaturamento(ingressosvend * valor)
 
-        if(ingressodisp == 7){
+        if(ingressodisp == 55){
             SetCor("orange")
             SetCortexto("white")
         }

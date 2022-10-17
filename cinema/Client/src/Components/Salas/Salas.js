@@ -29,10 +29,10 @@ export default function Salas() {
 
                         <p className="horarios">Horario das 15:00</p>
                         <Link to="/Sala1"><button className="botao">
-                            <p className="2">Informações</p></button></Link>
+                            <p className="text_botao">Informações</p></button></Link>
                             
                         <p className="horarios">Horario das 18:00</p>
-                        <Link to="/Sala1"><button className="botao">
+                        <Link to="/Sala1_2"><button className="botao">
                             <p className="2">Informações</p></button></Link>
                     </div>
 
@@ -66,7 +66,7 @@ export default function Salas() {
                             <p className="text_botao_menor">Informações</p></button></Link>
 
                         <p className="horarios">Horario das 20:00</p>
-                        <Link to="/Sala4"><button className="botao_menor">
+                        <Link to="/Sala4_2"><button className="botao_menor">
                             <p className="text_botao_menor">Informações</p></button></Link>
                     </div>
 
@@ -99,7 +99,7 @@ export default function Salas() {
                             <p className="text_botao">Informações</p></button></Link>
 
                         <p className="horarios">Horario das 20:30</p>
-                        <Link to="/Sala7"><button className="botao">
+                        <Link to="/Sala7_2"><button className="botao">
                             <p className="text_botao">Informações</p></button></Link>
                     </div>
 

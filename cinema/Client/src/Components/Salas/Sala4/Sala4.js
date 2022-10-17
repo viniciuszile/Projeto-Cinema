@@ -1,27 +1,68 @@
-import "./Sala4.css"
+import "../../Estilo_Global/style.css"
 import React,{ useState,useEffect } from 'react';
+import axios from "axios";
 
-export default function Sala1 (){
+export default function Sala4(){
 
+    const [sala, SetSala] = useState([])
+    const [capacidade, SetCapacidade] = useState()
+    const [faturamento, SetFaturamento] = useState()
+    const [horario, SetHorario] = useState()
 
-    const [ingressodisp, SetIngressodips] =  useState(90)
-    const [ingressosvend, SetIngressosvend] = useState(0)
-    const [faturamento, SetFaturamento] = useState(0)
-    const [programacao, SetProgramacao] = useState("A mulher rei")
-    const [duracao, SetDuracao] = useState("120 Minutos")
-    const [capacidade, SetCapacidade] = useState(90)
+    const [programacao, SetProgramacao] = useState("")
+    const [duracao, SetDuracao] = useState("")
+
+    const [ingressodisp, SetIngressodips] =  useState()
+    const [ingressosvend, SetIngressosvend] = useState()
+    const [valor, SetValor] = useState()
+    
     const [desativar, SetDesativar] = useState("")
     const [cor, SetCor] = useState("")
     const [cortexto, SetCortexto] = useState("")
+
+    useEffect(() =>{
+        axios.get("http://localhost:3006/")
+        .then((response) => response.data)
+        .then((response) =>{
+            console.log(response[4])
+            SetSala(response[4]["NUMERO_SALA"])
+            SetCapacidade(response[4]["CAPACIDADE"])
+            SetHorario(response[4]["HORARIO"])
+
+        })
+    },[])
+
+    useEffect(() =>{
+        axios.get("http://localhost:3006/Filmes")
+        .then((response) => response.data)
+        .then((response) =>{
+            console.log(response[4])
+            SetProgramacao(response[4]["FILME"])
+            SetDuracao(response[4]["DURACAO"])
+            
+        })
+    },[])
+
+    useEffect(() =>{
+        axios.get("http://localhost:3006/Ingresso")
+        .then((response) => response.data)
+        .then((response) =>{
+            console.log(response[4])
+            SetIngressodips(response[4]["INGRESSOSDISP"])
+            SetIngressosvend(response[4]["INGRESSOSVEND"])
+            SetValor(response[4]["VALOR"])            
+        })
+    },[])
+
 
 
     const ingressos = () =>{
 
         SetIngressodips(ingressodisp - 1)
         SetIngressosvend(ingressosvend + 1)
-        SetFaturamento(ingressosvend * 10)
+        SetFaturamento(ingressosvend * valor)
 
-        if(ingressodisp == 60){
+        if(ingressodisp == 54){
             SetCor("orange")
             SetCortexto("white")
         }
@@ -33,6 +74,9 @@ export default function Sala1 (){
             SetCortexto("white")
         }
     }
+    
+
+
 
     return(
         
@@ -46,17 +90,18 @@ export default function Sala1 (){
 
                 <div className="infos-sala1" style={{backgroundColor: cor }}>
 
-                    <h1 style={{color: cortexto }} className="texto_nome-sala1">Sala 4 </h1>
+                    <h1 style={{color: cortexto }} className="texto_nome-sala1">{sala}</h1>
 
                     
                     <p  style={{color: cortexto }} className="texto_infos">Programação : {programacao}</p>
                     <p style={{color: cortexto }} className="texto_infos">Duração Do Filme : {duracao}</p>
+                    <p style={{color: cortexto }} className="texto_infos">Horario Da Sessão : {horario}</p>
                     <p  style={{color: cortexto }} className="texto_infos">Capacidade : {capacidade}</p>
                     <p style={{color: cortexto }} className="texto_infos">Ingressos Disponiveis : {ingressodisp}</p>
                     <p  style={{color: cortexto }} className="texto_infos">Ingressos vendidos : {ingressosvend}</p>
                     
                     <button  disabled={desativar} className="botao-sala1" onClick={ingressos}>Comprar Ingresso</button>
-                    
+                    <p className="texto_infos">faturamento Total : {faturamento} </p>
                 </div>
             </div>
         </div>

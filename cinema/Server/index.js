@@ -43,6 +43,22 @@ app.get('/Ingresso', (req,res) =>{
     })
 })
 
+app.put("/", (req, res) => {
+    console.log("foi")
+    const { IDFILME } = 1;
+    const { FILME } = "TESTE1";
+    // const { cost } = req.body;
+    // const { category } = req.body;
+    let mysql = "UPDATE FILMES SET FILME = teste,  WHERE IDFILME = 1";
+    db.query(mysql, [FILME, IDFILME], (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
+
 
 
 app.listen(3006, () => {
