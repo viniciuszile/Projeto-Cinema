@@ -2,14 +2,14 @@
     margin: 0;
 }
 
-.container-sala1{   
+.container-sala{   
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-.header-sala1{
+.header-sala{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.infos-sala1{
+.infos-sala{
     width: 500px;
     margin-top: 200px;
     background-color: rgb(255, 255, 255);
@@ -30,19 +30,19 @@
     box-shadow:20px 10px black;
 }
 
-
-.texto_nome-sala1{
-    font-size: 35px;
-    color: rgb(50, 50, 200);
-}
-
-.texto_infos{
+.infos-sala  p{
     margin-top: 20px;
     font-size: 18px;
     color: rgb(0, 0, 0);
 }
 
-.botao-sala1{
+
+.texto_nome-sala{
+    font-size: 35px;
+    color: rgb(50, 50, 200);
+}
+
+.botao-sala{
     margin-top: 30px;
     width: 125px;
     height: 30px;
@@ -53,7 +53,7 @@
     border-radius: 5px;
 }
 
-.botao-sala1:hover{
+.botao-sala:hover{
     margin-top: 30px;
     width: 125px;
     height: 30px;
@@ -62,4 +62,16 @@
     color: rgb(255, 255, 255);
     border: rgb(255, 255, 255) solid 1px;
     border-radius: 5px;
+}
+
+.sinopse{
+    width: 200px;
+    height: 200px;
+}
+
+.text{
+    margin-top:5;
+    color:rgb(0, 0, 0);
+    width:350px;
+    height:150px;
 }

@@ -43,22 +43,35 @@ app.get('/Ingresso', (req,res) =>{
     })
 })
 
-app.put("/", (req, res) => {
-    console.log("foi")
-    const { IDFILME } = 1;
-    const { FILME } = "TESTE1";
-    // const { cost } = req.body;
-    // const { category } = req.body;
-    let mysql = "UPDATE FILMES SET FILME = teste,  WHERE IDFILME = 1";
-    db.query(mysql, [FILME, IDFILME], (err, result) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(result);
-      }
-    });
-  });
 
+app.put('/Atulizar', (req,res) => {
+        const id = req.body.id
+        
+        let update = `UPDATE salas s INNER JOIN ingresso i ON s.IDSALAS = i.ID_SALAS_INGRESSOS set i.INGRESSOSDISP = (i.ingressosdisp -1), i.INGRESSOSVEND  = (i.INGRESSOSVEND +1) where s.IDSALAS = ${id};`
+        let update2 = `UPDATE salas s INNER JOIN ingresso i ON s.IDSALAS = i.ID_SALAS_INGRESSOS set s.FATURAMENTO = (i.ingressosvend * i.valor) where s.IDSALAS = ${id};`
+        let select = `select s.FATURAMENTO,i.INGRESSOSDISP,i.INGRESSOSVEND,s.Cor,s.Capacidade  from salas s INNER JOIN ingresso i ON s.IDSALAS = i.ID_SALAS_INGRESSOS INNER JOIN Filmes f on s.IDSALAS = f.ID_SALAS_FILMES where s.IDSALAS = ${id};`
+
+        db.query(update, function (err, result) {
+            console.log(result)
+
+            db.query(update2, function (err, result) {
+                console.log(result)
+            })
+
+            db.query(select, function (err, result) {
+                if (result[0].INGRESSOSVEND > 1 && result[0].INGRESSOSVEND <= 99) {
+                    db.query(`UPDATE salas s set s.Cor = "#6495ED" where s.IDSALAS = ${id}; `,function(err,result){
+                        console.log(result)
+                    })
+                }
+                if (result[0].INGRESSOSVEND === result[0].Capacidade) {
+                    db.query(`UPDATE salas s set s.Cor = "red" where s.IDSALAS = ${id}; `,function(err,result){
+                        console.log(result)
+                    })
+                }
+            })
+        })
+})
 
 
 app.listen(3006, () => {

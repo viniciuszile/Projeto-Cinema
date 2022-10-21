@@ -1,8 +1,8 @@
 import "../../Estilo_Global/style.css"
-import React,{ useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
-export default function Sala1 (){
+export default function Sala1() {
 
     const [sala, SetSala] = useState([])
     const [capacidade, SetCapacidade] = useState()
@@ -11,97 +11,108 @@ export default function Sala1 (){
 
     const [programacao, SetProgramacao] = useState("")
     const [duracao, SetDuracao] = useState("")
+    const [teste, setTeste] = useState("")
 
-    const [ingressodisp, SetIngressodips] =  useState()
+    const [ingressodisp, SetIngressodips] = useState()
     const [ingressosvend, SetIngressosvend] = useState()
-    const [valor, SetValor] = useState()
-    
-    const [desativar, SetDesativar] = useState("")
+
+    const [desativar, SetDesativar] = useState(false)
     const [cor, SetCor] = useState("")
     const [cortexto, SetCortexto] = useState("")
+    const [id, SetId] = useState()
 
-    useEffect(() =>{
+    const [desativar2,setDesativar2] = useState(false)
+
+
+    useEffect(() => {
         axios.get("http://localhost:3006/")
-        .then((response) => response.data)
-        .then((response) =>{
-            console.log(response[0])
-            SetSala(response[0]["NUMERO_SALA"])
-            SetCapacidade(response[0]["CAPACIDADE"])
-            SetHorario(response[0]["HORARIO"])
+            .then((response) => response.data)
+            .then((response) => {
+                console.log(response[0])
+                SetSala(response[0]["NUMERO_SALA"])
+                SetCapacidade(response[0]["CAPACIDADE"])
+                SetHorario(response[0]["HORARIO"])
+                SetFaturamento(response[0]["FATURAMENTO"])
+                SetCor(response[0]["COR"])
+                SetId(response[0]["IDSALAS"])
+                
 
-        })
-    },[])
-
-    useEffect(() =>{
+            })
         axios.get("http://localhost:3006/Filmes")
-        .then((response) => response.data)
-        .then((response) =>{
-            console.log(response[0])
-            SetProgramacao(response[0]["FILME"])
-            SetDuracao(response[0]["DURACAO"])
-            
-        })
-    },[])
+            .then((response) => response.data)
+            .then((response) => {
+                console.log(response[0])
+                SetProgramacao(response[0]["FILME"])
+                SetDuracao(response[0]["DURACAO"])
+                setTeste(response[0]["SINOPSE"])
 
-    useEffect(() =>{
+
+            })
         axios.get("http://localhost:3006/Ingresso")
-        .then((response) => response.data)
-        .then((response) =>{
-            console.log(response[0])
-            SetIngressodips(response[0]["INGRESSOSDISP"])
-            SetIngressosvend(response[0]["INGRESSOSVEND"])
-            SetValor(response[0]["VALOR"])            
-        })
-    },[])
+            .then((response) => response.data)
+            .then((response) => {
+                console.log(response[0])
+                SetIngressodips(response[0]["INGRESSOSDISP"])
+                SetIngressosvend(response[0]["INGRESSOSVEND"])
+                
+            })
+    }, [])
 
-
-
-    const ingressos = () =>{
-
-        SetIngressodips(ingressodisp - 1)
-        SetIngressosvend(ingressosvend + 1)
-        SetFaturamento(ingressosvend * valor)
-
-        if(ingressodisp == 50){
-            SetCor("orange")
-            SetCortexto("white")
-        }
-
-        if(ingressodisp == 1){
-            SetDesativar("desabled")
-            SetIngressodips("Os ingressos esgotaram")
-            SetCor("red")
-            SetCortexto("white")
-        }
-    }
     
 
 
+    function comprarIngressos(){
+        if(ingressodisp === 0){
+            SetDesativar(true)
+            window.location.reload();
+        }
 
-    return(
+        if(ingressodisp >= 1){
+            axios.put("http://localhost:3006/Atulizar",{
+                id:id
+            }).then((res) => {
+                console.log(res.data)
+            })
+            window.location.reload();
+       }
         
+    }
+
+    function Sinopse () {
+        let infos = document.getElementById("infos-sala")
+        var textArea = document.createElement("textarea");
+        textArea.className = "text"
+        textArea.textContent = teste
+        textArea.setAttribute('disabled', true);
+        infos.appendChild(textArea)
+        console.log(teste)
+        setDesativar2(true)
+    }
+
+    return (
+
         <div>
 
-            <div className="header-sala1">
-                    <h1>Cine-Zile</h1>
-                </div>
+            <div className="header-sala">
+                <h1>Cine-Zile</h1>
+            </div>
 
-            <div className="container-sala1"  >
+            <div className="container-sala"  >
 
-                <div className="infos-sala1" style={{backgroundColor: cor }}>
+                <div className="infos-sala" id="infos-sala" style={{ backgroundColor: cor }}>
 
-                    <h1 style={{color: cortexto }} className="texto_nome-sala1">{sala}</h1>
+                    <h1 style={{ color: cortexto }} className="texto_nome-sala">{sala}</h1>
 
-                    
-                    <p  style={{color: cortexto }} className="texto_infos">Programação : {programacao}</p>
-                    <p style={{color: cortexto }} className="texto_infos">Duração Do Filme : {duracao}</p>
-                    <p style={{color: cortexto }} className="texto_infos">Horario Da Sessão : {horario}</p>
-                    <p  style={{color: cortexto }} className="texto_infos">Capacidade : {capacidade}</p>
-                    <p style={{color: cortexto }} className="texto_infos">Ingressos Disponiveis : {ingressodisp}</p>
-                    <p  style={{color: cortexto }} className="texto_infos">Ingressos vendidos : {ingressosvend}</p>
-                    
-                    <button  disabled={desativar} className="botao-sala1" onClick={ingressos}>Comprar Ingresso</button>
-                    <p className="texto_infos">faturamento Total : {faturamento} </p>
+
+                    <p style={{ color: cortexto }}>Programação : {programacao}</p>
+                    <p style={{ color: cortexto }}>Duração Do Filme : {duracao}</p>
+                    <p style={{ color: cortexto }}>Horario Da Sessão : {horario}</p>
+                    <p style={{ color: cortexto }}>Capacidade : 100</p>
+                    <p style={{ color: cortexto }}>Ingressos Disponiveis : {ingressodisp}</p>
+                    <p style={{ color: cortexto }}>Ingressos vendidos : {ingressosvend}</p>
+                    <button disabled={desativar} onClick={comprarIngressos} className="botao-sala">Comprar Ingresso</button>
+                    <button onClick={Sinopse} className="botao-sala" disabled={desativar2}>Sinopse</button>
+                    <p style={{ color: cortexto }}>faturamento Total : {faturamento} R$ </p>
                 </div>
             </div>
         </div>
